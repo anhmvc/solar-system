@@ -4,7 +4,7 @@ const {
     Vector, Vector3, vec, vec3, vec4, color, hex_color, Shader, Matrix, Mat4, Light, Shape, Material, Scene,
 } = tiny;
 
-export class Assignment3 extends Scene {
+export class SolarSystem extends Scene {
     constructor() {
         // constructor(): Scenes begin by populating initial values like the Shapes and Materials they'll need.
         super();
@@ -90,16 +90,16 @@ export class Assignment3 extends Scene {
             Math.PI / 4, context.width / context.height, .1, 1000);
         const t = program_state.animation_time / 1000, dt = program_state.animation_delta_time / 1000;
         
-        // Requirement 1: Sun radius and color changing
+        // Sun radius and color changing
         const radius = Math.sin(t / 5 * 2 * Math.PI) + 2;
         const sun_color = color((radius - 1) / 2, 0, (3 - radius) / 2, 1); // change from red (1,0,0,1) to blue (0,0,0,1) over time
 
-        // Requirement 2: Lighting
+        // Lighting
         const light_position = vec4(0, 0, 0, 1); // move to center of the sun 
         program_state.lights = [new Light(light_position, color(1, 1, 1, 1), 10**radius)]; // white color
 
         
-        // Requirement 3: 4 planets of radius 1 + SUN
+        // 4 planets of radius 1 + SUN
         const angle = t; 
         const yellow = hex_color("#fac91a");
         let model_transform = Mat4.identity();
